@@ -9,15 +9,13 @@
   <main class="produto" >
     <form action="showProduct" method="get" class="productForm" >
       <div>
-        <label>Escolha o market:</label>
-        <input type="checkbox" value="Ecommerce" name="anyMarket">Ecommerce
-        <input type="checkbox" value="ERP" name="anyMarket">ERP
-        <input type="checkbox" value="Loja Fisica" name="anyMarket">Loja Física
-        <input type="checkbox" value="Telecom" name="anyMarket">Telecom
-        <input type="checkbox" value="Venda Direta" name="anyMarket">Venda Direta
-        <input type="checkbox" value="Mobile First" name="anyMarket">Mobile First
-        <input type="checkbox" value="Digital Onboarding" name="anyMarket">Digital Onboarding
-        <input type="checkbox" value="Lojista que nao desejam possuir ecommerce" name="anyMarket">Lojista que não desejam possuir ecommerce
+        <h3>Escolha o market:</h3>
+        <div *ngFor="let item of _filterList" class="row">
+          <div>
+              <label>{{item.name}}</label>
+              <input type="checkbox" name="{{item.name}}" (change)="onchange()" [(ngModel)]="item.isSelected">
+          </div>
+        </div>
 
       </div>
       <div>

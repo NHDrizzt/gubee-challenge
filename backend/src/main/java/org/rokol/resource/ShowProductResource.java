@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-@Path("/hello")
+@Path("/showProduct")
 @Resource
 public class ShowProductResource {
 
@@ -38,9 +38,9 @@ public class ShowProductResource {
         List<Stack> stackList = new ArrayList<>();
         Market market = new Market(1, "ERP");
         Stack stack = new Stack(1, "Java 10");
+        Set<Product> set;
         marketList.add(market);
         stackList.add(stack);
-        Set<Product> set;
         set = productService.getMarketAndStack(marketList, stackList);
         return set;
     }
