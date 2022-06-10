@@ -11,9 +11,7 @@ import org.rokol.services.ProductServiceImpl;
 import javax.annotation.Resource;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,7 +19,8 @@ import java.util.List;
 import java.util.Set;
 
 @Path("/showProduct")
-@Resource
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class ShowProductResource {
 
     @Inject
@@ -29,9 +28,9 @@ public class ShowProductResource {
     @Inject
     ProductService productService;
 
-    @GET
+    @POST
     @Produces(MediaType.TEXT_PLAIN)
-    public Set<Product> getMarketAndStack() throws SQLException {
+    public Set<Product> getMarketAndStack(List<Market> listMarket, List<Stack> listStack) throws SQLException {
         abstractDaoFactory = TypeDatabase.JDBC.getDefaultFactory();
         productService = new ProductServiceImpl(abstractDaoFactory);
         List<Market> marketList = new ArrayList<>();
