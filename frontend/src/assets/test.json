@@ -1,5 +1,7 @@
-{
-  "id": "1",
-  "name": "Gube Integrador",
-  "description": "Integra Facil"
-}
+[
+  {
+    "id": 1,
+    "name": "Gube Integrador",
+    "description": "Integra Facil"
+  }
+]

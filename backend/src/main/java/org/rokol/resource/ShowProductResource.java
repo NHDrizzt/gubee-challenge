@@ -15,6 +15,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -28,19 +29,9 @@ public class ShowProductResource {
     @Inject
     ProductService productService;
 
-    @POST
-    @Produces(MediaType.TEXT_PLAIN)
-    public Set<Product> getMarketAndStack(List<Market> listMarket, List<Stack> listStack) throws SQLException {
-        abstractDaoFactory = TypeDatabase.JDBC.getDefaultFactory();
-        productService = new ProductServiceImpl(abstractDaoFactory);
-        List<Market> marketList = new ArrayList<>();
-        List<Stack> stackList = new ArrayList<>();
-        Market market = new Market(1, "ERP");
-        Stack stack = new Stack(1, "Java 10");
-        Set<Product> set;
-        marketList.add(market);
-        stackList.add(stack);
-        set = productService.getMarketAndStack(marketList, stackList);
-        return set;
+    @GET
+    public List<Market> list() {
+        //TODO still testing
+        return Market.listAll();
     }
 }
