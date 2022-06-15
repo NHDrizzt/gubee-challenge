@@ -12,7 +12,6 @@ import {catchError, Observable, of} from "rxjs";
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
-  formulario: FormGroup | undefined;
   listMarkets: Market[] = [
     {id: 1, name: "Ecommerce", isSelected: false},
     {id: 2, name: "ERP", isSelected: false},
