@@ -1,6 +1,7 @@
 package org.rokol.resource;
 
 import org.rokol.dao.AbstractDaoFactory;
+import org.rokol.dao.MarketRepository;
 import org.rokol.enums.TypeDatabase;
 import org.rokol.model.Market;
 import org.rokol.model.Product;
@@ -26,12 +27,33 @@ public class ShowProductResource {
 
     @Inject
     AbstractDaoFactory abstractDaoFactory;
+
     @Inject
     ProductService productService;
 
+    @Path("/list")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Set<Product> getListMarketAndStack(){
+        abstractDaoFactory = TypeDatabase.JDBC.getDefaultFactory();
+        productService = new ProductServiceImpl(abstractDaoFactory);
+        List<Market> listMarket = new ArrayList<>();
+        List<Stack> listStack = new ArrayList<>();
+        Set<Product> setProduct;
+
+        listMarket.add(new Market(1,"Ecommerce"));
+        listMarket.add(new Market(1,"ERP"));
+        listStack.add(new Stack(1, "Java 10"));
+
+
+        setProduct = productService.getMarketAndStack(listMarket, listStack);
+        System.out.println(setProduct);
+        return setProduct;
+    }
+
+
     @GET
     public List<Market> list() {
-        //TODO still testing
-        return Market.listAll();
+        return productService.listAllMarkets();
     }
 }

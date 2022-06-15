@@ -1,6 +1,7 @@
 package org.rokol.services;
 
 import org.rokol.dao.AbstractDaoFactory;
+import org.rokol.dao.MarketRepository;
 import org.rokol.dao.ProductRepository;
 import org.rokol.model.Market;
 import org.rokol.model.Product;
@@ -17,6 +18,9 @@ public class ProductServiceImpl implements ProductService {
     @Inject
     ProductRepository productRepository;
 
+    @Inject
+    MarketRepository marketRepository;
+
     public ProductServiceImpl(AbstractDaoFactory factory) {
         productRepository = factory.createDatabase();
     }
@@ -24,4 +28,11 @@ public class ProductServiceImpl implements ProductService {
     public Set<Product> getMarketAndStack(List<Market> listMarket, List<Stack> listStack) {
         return productRepository.listProductByMarketAndStack(listMarket, listStack);
     }
+
+    @Override
+    public List<Market> listAllMarkets(){
+        return marketRepository.listAll();
+    }
+
+
 }

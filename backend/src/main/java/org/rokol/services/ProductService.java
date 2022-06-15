@@ -11,4 +11,5 @@ public interface ProductService {
 
     Set<Product> getMarketAndStack(List<Market> listMarket, List<Stack> listStack);
 
+    List<Market> listAllMarkets();
 }

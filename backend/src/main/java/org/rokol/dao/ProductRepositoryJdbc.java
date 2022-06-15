@@ -1,6 +1,7 @@
 package org.rokol.dao;
 
 import io.agroal.api.AgroalDataSource;
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import org.rokol.annotation.Transaction;
 import org.rokol.exception.DbException;
 import org.rokol.model.Market;
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
 
 @Alternative
 @Dependent
-public class ProductRepositoryJdbc implements ProductRepository, ConnectionProvider {
+public class ProductRepositoryJdbc implements ProductRepository, ConnectionProvider, PanacheRepository<Product> {
 
     @Override
     public Connection establishConnection() {
