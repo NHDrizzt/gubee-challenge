@@ -9,22 +9,23 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatCardModule} from "@angular/material/card";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
-
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
-    ProductComponent
+    ProductComponent,
   ],
-  imports: [
-    CommonModule,
-    ProductRoutingModule,
-    MatTableModule,
-    ReactiveFormsModule,
-    MatCheckboxModule,
-    FormsModule,
-    MatCardModule,
-    MatProgressSpinnerModule,
-    MatButtonToggleModule
-  ]
+    imports: [
+        CommonModule,
+        ProductRoutingModule,
+        MatTableModule,
+        ReactiveFormsModule,
+        MatCheckboxModule,
+        FormsModule,
+        MatCardModule,
+        MatProgressSpinnerModule,
+        MatButtonToggleModule,
+        MatButtonModule
+    ]
 })
 export class ProductModule { }
