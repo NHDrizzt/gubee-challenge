@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {HttpClientModule} from "@angular/common/http";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
         BrowserAnimationsModule,
         MatToolbarModule,
         HttpClientModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        ReactiveFormsModule
     ],
   providers: [],
   bootstrap: [AppComponent]

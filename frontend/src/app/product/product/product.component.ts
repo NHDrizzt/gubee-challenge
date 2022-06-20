@@ -4,10 +4,11 @@ import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {Stack} from "../model/stack";
 import {Product} from "../model/product";
 import {ProductService} from "../services/product.service";
-import {catchError, Observable, of} from "rxjs";
+import {catchError, EMPTY, Observable, of} from "rxjs";
 import { SelectionModel } from '@angular/cdk/collections';
 import {MatTableDataSource} from "@angular/material/table";
 import {MatCheckboxChange} from "@angular/material/checkbox";
+import {HttpClient} from "@angular/common/http";
 
 const listMarket: Market[] = [
   {id: 1, name: "Ecommerce", isSelected: false},
@@ -42,33 +43,35 @@ const listStack: Stack[] = [
 export class ProductComponent implements OnInit {
   dataSourceMarket = new MatTableDataSource<Market>(listMarket);
   dataSourceStack = new MatTableDataSource<Stack>(listStack);
-  frameworks = [
-    {id: 1, name: "Ecommerce", isSelected: false},
-    {id: 2, name: "ERP", isSelected: false},
-    {id: 3, name: "Loja Fisica", isSelected: false},
-    {id: 4, name: "Telecom", isSelected: false},
-    {id: 5, name: "Venda Direta", isSelected: false},
-    {id: 6, name: "Mobile First", isSelected: false},
-    {id: 7, name: "Digital Onboarding", isSelected: false},
-    {id: 8, name: "Lojista que nao desejam possuir ecommerce", isSelected: false},
+  dataMarket: Market[] = listMarket;
+  displayedColumns: string[] = ['name'];
+  columnsToDisplay: string[] = this.displayedColumns.slice();
+  columns = [
+    {
+      columnDef: 'name',
+      header: 'Name',
+      cell: (element: Market) => `${element.name}`,
+    },
   ];
-
   form: FormGroup;
   selection = new SelectionModel<Market>(true, []);
 
-
-  displayedColumns = ["id", "name"];
   displayProducts = ["id", "name", "description"]
 
   listProducts$: Observable<Product[]>
+  listProd = []
   displayedSubmit = ["submit"];
   row: any;
   parentSelector: boolean = false;
 
-  constructor(private fb: FormBuilder, private productService: ProductService) {
+  constructor(
+    private fb: FormBuilder,
+    private productService: ProductService,
+    private http: HttpClient,
+    ) {
     this.form = this.fb.group({
       checkArray: this.fb.array([]),
-      frameworks: this.buildFrameworks()
+      markets: this.buildFrameworks()
     })
 
     this.listProducts$ = productService.list()
@@ -80,60 +83,48 @@ export class ProductComponent implements OnInit {
       )
   }
 
+
   buildFrameworks(){
-    const values = this.frameworks.map(v=> new FormControl(false));
+    const values = this.dataMarket.map(v=> new FormControl(false));
     return this.fb.array(values);
   }
 
   ngOnInit(): void {
-    console.log(this.listProducts$)
+      this.onRefresh();
   }
 
-  onCheckboxChange(e: any) {
-    const checkArray: FormArray = this.form.get('checkArray') as FormArray;
-    if (e.checked) {
-      checkArray.push(new FormControl(e.value));
-    } else {
-      let i = 0;
-      checkArray.controls.forEach((item: any) => {
-        if (item.value == e.value) {
-          checkArray.removeAt(i);
-          return
-        }
-        i++
-      });
+  onRefresh() {
+    this.listProducts$ = this.productService.list().pipe(
+      catchError(error => {
+        console.error(error);
+        return EMPTY;
+      })
+    );
+  }
+
+  getMarketControls() {
+    return this.form.get('markets') ? (<FormArray>this.form.get('markets'))['controls'] : null;
+  }
+
+  onSubmit() {
+    console.log(this.form.value);
+
+    let valueSubmit = Object.assign({}, this.form.value);
+
+    valueSubmit = Object.assign(valueSubmit, {
+      markets: valueSubmit.markets
+        .map((v: any, i: any) => v ? this.dataMarket[i].name : null)
+        .filter((v: any) => v !== null)
+    });
+
+    console.log(valueSubmit)
+
+    if(this.form.valid){
+      this.productService.getProducts(valueSubmit).subscribe(
+        () =>{ console.log("success")
+        })
     }
-  }
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSourceMarket.data.length;
-    return numSelected === numRows;
-  }
 
-  masterToggle() {
-    this.isAllSelected() ?
-      this.selection.clear() :
-      this.dataSourceMarket.data.forEach(row => this.selection.select(row));
-  }
-  submitForm() {
-
-  }
-
-  onChangeEvent($event: MatCheckboxChange) {
-    const id = $event.source.value
-    const isChecked = $event.source.checked
-    this.dataSourceMarket.data.map((d) => {
-      if(d.id.toString() == id){
-        d.isSelected = isChecked;
-        return d
-      }
-      // @ts-ignore
-      if(id == -1){
-
-      }
-      return d
-    })
-    console.log(this.dataSourceMarket)
   }
 }
 

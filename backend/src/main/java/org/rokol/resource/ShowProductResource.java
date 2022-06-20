@@ -29,7 +29,7 @@ public class ShowProductResource {
     @Path("/list")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Set<Product> getListMarketAndStack(){
+    public Set<Product> getListMarketAndStack(List<Market> listMrk){
         abstractDaoFactory = TypeDatabase.JDBC.getDefaultFactory();
         productService = new ProductServiceImpl(abstractDaoFactory);
         List<Market> listMarket = new ArrayList<>();
@@ -47,7 +47,7 @@ public class ShowProductResource {
     }
 
 
-    @GET
+    @POST
     public List<Market> list() {
         return productService.listAllMarkets();
     }

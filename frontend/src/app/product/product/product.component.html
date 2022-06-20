@@ -1,57 +1,18 @@
-<div>
-  <form [formGroup]="form" (ngSubmit)="submitForm()" novalidate>
-    <mat-table #table [dataSource]="frameworks" style="float: left;">
-      <div>
-        <!-- Checkbox Column -->
-        <ng-container matColumnDef="id">
-          <mat-header-cell *matHeaderCellDef>
-            <mat-checkbox (change)="onChangeEvent($event)"
-                          [checked]="selection.hasValue() && isAllSelected()"
-                          [indeterminate]="selection.hasValue() && !isAllSelected()">
-            </mat-checkbox>
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row">
-            <mat-checkbox (click)="$event.stopPropagation()"
-                          [value]="row.id"
-                          (change)="onChangeEvent($event)"
-                          [checked]="selection.isSelected(row)">
-            </mat-checkbox>
-
-          </mat-cell>
-        </ng-container>
+<form class="form-horizontal" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="col-md-3">
+    <label for="markets">Markets</label>
+    <div id="markets">
+      <div class="checkbox"
+           formArrayName="markets"
+           *ngFor="let item of getMarketControls() let i = index">
+        <label class="checkbox-inline">
+          <input type="checkbox" [formControlName]="i"> {{ dataMarket[i].name }}
+        </label>
       </div>
-
-      <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef>Market</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
-      </ng-container>
-
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></mat-row>
-    </mat-table>
-
-    <mat-table #table [dataSource]="dataSourceStack" style="float: left;">
-      <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef> Select</mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          <mat-checkbox #checkBox [value]="element.id"></mat-checkbox>
-        </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef> Stack</mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-      </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-
-    <button mat-flat-button color="warn" type="submit" value="submit">Submit</button>
-  </form>
-</div>
-
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
 <div *ngIf="listProducts$ | async as listProducts; else loading">
   <mat-table #table [dataSource]="listProducts" style="float: left;">
