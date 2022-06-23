@@ -46,6 +46,26 @@ public class ShowProductResource {
         return setProduct;
     }
 
+    @Path("/listTest")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public Set<Product> getListMarketAndStackTest(List<Market> listMrk){
+        abstractDaoFactory = TypeDatabase.JDBC.getDefaultFactory();
+        productService = new ProductServiceImpl(abstractDaoFactory);
+        List<Market> listMarket = new ArrayList<>();
+        List<Stack> listStack = new ArrayList<>();
+        Set<Product> setProduct;
+
+        listMarket.add(new Market(1,"Ecommerce"));
+        listMarket.add(new Market(1,"ERP"));
+        listStack.add(new Stack(1, "Java 10"));
+
+
+        setProduct = productService.getMarketAndStack(listMarket, listStack);
+        System.out.println(setProduct);
+        return setProduct;
+    }
+
 
     @POST
     public List<Market> list() {

@@ -7,21 +7,42 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {HttpClientModule} from "@angular/common/http";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatListModule} from "@angular/material/list";
+import { TemplateFormComponent } from './template-form/template-form.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {TemplateFormModule} from "./template-form/template-form.module";
+import {MatFormFieldModule} from "@angular/material/form-field";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TemplateFormComponent,
+    HeaderComponent,
+    FooterComponent,
+    ReactiveFormComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatToolbarModule,
-        HttpClientModule,
-        MatProgressSpinnerModule,
-        ReactiveFormsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    HttpClientModule,
+    MatProgressSpinnerModule,
+    ReactiveFormsModule,
+    MatSidenavModule,
+    MatListModule,
+    TooltipModule,
+    MatCheckboxModule,
+    FormsModule,
+    TemplateFormModule,
+    MatFormFieldModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

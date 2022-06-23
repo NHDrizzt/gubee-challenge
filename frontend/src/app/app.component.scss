@@ -1,0 +1,36 @@
+.red {
+  color: rgb(227, 94,107);
+}
+
+.header{
+  display: flex;
+  align-items: center;
+}
+
+.header a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.header .title-group {
+  padding-left: -10px;
+}
+
+.header .title-group i {
+  padding-right: 5px;
+}
+
+
+.sidenav{
+  background-color: #3F51B5;
+  width: 200px;
+}
+
+.sidenav a {
+  color: #FFF;
+}
+
+.sidenav i {
+  padding-right: 10px;
+}
