@@ -67,7 +67,8 @@ public class ShowProductResource {
     }
 
 
-    @POST
+    @Path("/getAll")
+    @GET
     public List<Market> list() {
         return productService.listAllMarkets();
     }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, NgForm} from "@angular/forms";
 import {Market} from "./model/market";
 import {TemplateFormService} from "./template-form.service";
+import {catchError, Observable, of} from "rxjs";
+import {Product} from "./model/product";
 
 const listOfAllMarkets: Market[] = [
   {id: 1, name: "Ecommerce", isSelected: false},
@@ -20,13 +22,20 @@ const listOfAllMarkets: Market[] = [
   styleUrls: ['./template-form.component.scss']
 })
 export class TemplateFormComponent implements OnInit {
+  listProducts$: Observable<Product[]> | undefined
+
+  listProduct: Product[] = []
+  displayProducts = ["id", "name", "description"]
   public form: {
     marketSelected: Market[],
   }
   _listOfAllMarket: Market[] = listOfAllMarkets
 
   constructor(private templateService: TemplateFormService) {
-
+    // @ts-ignore
+   /* this.listProducts$ = templateService.listProducts().pipe(
+      catchError( err => {return of({})})
+    )*/
 
     this.form = {
       marketSelected: []
@@ -40,13 +49,11 @@ export class TemplateFormComponent implements OnInit {
   onSubmit(form: NgForm) : void {
     // @ts-ignore
     this.form.marketSelected = this._listOfAllMarket.filter(x=>x.isSelected).map(obj => ({"id":obj['id'], "name":obj['name']}))
+    this.listProducts$ = this.templateService.postProducts(this.form.marketSelected)
     console.group( "Form Submission" );
-    this.templateService.postProducts(this.form.marketSelected)
     console.log( JSON.stringify( this.form, null, 4 ) );
     console.log( form );
     console.groupEnd();
   }
 
-  onChange() {
-  }
 }

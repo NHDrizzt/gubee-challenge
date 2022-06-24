@@ -18,6 +18,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {TemplateFormModule} from "./template-form/template-form.module";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -27,22 +28,23 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     FooterComponent,
     ReactiveFormComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    HttpClientModule,
-    MatProgressSpinnerModule,
-    ReactiveFormsModule,
-    MatSidenavModule,
-    MatListModule,
-    TooltipModule,
-    MatCheckboxModule,
-    FormsModule,
-    TemplateFormModule,
-    MatFormFieldModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        HttpClientModule,
+        MatProgressSpinnerModule,
+        ReactiveFormsModule,
+        MatSidenavModule,
+        MatListModule,
+        TooltipModule,
+        MatCheckboxModule,
+        FormsModule,
+        TemplateFormModule,
+        MatFormFieldModule,
+        MatTableModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,17 +1,26 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Market} from "./model/market";
+import {delay, first, Observable, tap} from "rxjs";
+import {Product} from "./model/product";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TemplateFormService {
   private readonly API = 'showProduct/listTest'
+  private readonly APIGet = 'showProduct/getAll'
   constructor(private httpClient: HttpClient) {
 
   }
 
-  postProducts(valueSubmit: Market[]){
-    this.httpClient.post(this.API, valueSubmit, {headers: new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8')}).subscribe(dados => console.log(dados))
+  // @ts-ignore
+  postProducts(valueSubmit: Market[]): Observable<Product[]>{
+    return this.httpClient.post<Product[]>(this.API, valueSubmit, {headers: new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8')}).pipe(delay(400),tap(dado => console.log(dado)))
   }
+
+  listProducts(): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(this.APIGet)
+  }
+
 }
