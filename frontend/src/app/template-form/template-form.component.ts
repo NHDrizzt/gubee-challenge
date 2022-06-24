@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, NgForm} from "@angular/forms";
 import {Market} from "./model/market";
 import {TemplateFormService} from "./template-form.service";
-import {Observable} from "rxjs";
-import {Product} from "../product/model/product";
 
 const listOfAllMarkets: Market[] = [
   {id: 1, name: "Ecommerce", isSelected: false},
@@ -41,7 +39,7 @@ export class TemplateFormComponent implements OnInit {
 
   onSubmit(form: NgForm) : void {
     // @ts-ignore
-    this.form.marketSelected = this._listOfAllMarket.filter(x=>x.isSelected).map(x=>x.name)
+    this.form.marketSelected = this._listOfAllMarket.filter(x=>x.isSelected).map(obj => ({"id":obj['id'], "name":obj['name']}))
     console.group( "Form Submission" );
     this.templateService.postProducts(this.form.marketSelected)
     console.log( JSON.stringify( this.form, null, 4 ) );

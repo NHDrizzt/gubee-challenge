@@ -61,7 +61,7 @@ public class ShowProductResource {
         listStack.add(new Stack(1, "Java 10"));
 
 
-        setProduct = productService.getMarketAndStack(listMarket, listStack);
+        setProduct = productService.getMarketAndStack(listMrk, listStack);
         System.out.println(setProduct);
         return setProduct;
     }
