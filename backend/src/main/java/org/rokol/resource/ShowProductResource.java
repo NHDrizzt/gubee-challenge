@@ -1,7 +1,9 @@
 package org.rokol.resource;
 
+import antlr.MakeGrammar;
 import org.rokol.dao.AbstractDaoFactory;
 import org.rokol.enums.TypeDatabase;
+import org.rokol.model.FilterProduct;
 import org.rokol.model.Market;
 import org.rokol.model.Product;
 import org.rokol.model.Stack;
@@ -26,7 +28,7 @@ public class ShowProductResource {
     @Inject
     ProductService productService;
 
-    @Path("/list")
+ /*   @Path("/list")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Set<Product> getListMarketAndStack(List<Market> listMrk){
@@ -44,32 +46,29 @@ public class ShowProductResource {
         setProduct = productService.getMarketAndStack(listMarket, listStack);
         System.out.println(setProduct);
         return setProduct;
-    }
+    }*/
 
     @Path("/listTest")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public Set<Product> getListMarketAndStackTest(List<Market> listMrk){
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Set<Product> getListMarketAndStackTest(FilterProduct filterProduct){
         abstractDaoFactory = TypeDatabase.JDBC.getDefaultFactory();
         productService = new ProductServiceImpl(abstractDaoFactory);
-        List<Market> listMarket = new ArrayList<>();
-        List<Stack> listStack = new ArrayList<>();
+
+        System.out.println(filterProduct.getMarket());
+        System.out.println(filterProduct.getStack());
+
         Set<Product> setProduct;
-
-        listMarket.add(new Market(1,"Ecommerce"));
-        listMarket.add(new Market(1,"ERP"));
-        listStack.add(new Stack(1, "Java 10"));
-
-
-        setProduct = productService.getMarketAndStack(listMrk, listStack);
+        setProduct = productService.getMarketAndStack(filterProduct.getMarket(), filterProduct.getStack());
         System.out.println(setProduct);
         return setProduct;
     }
 
 
-    @Path("/getAll")
+/*    @Path("/getAll")
     @GET
     public List<Market> list() {
         return productService.listAllMarkets();
-    }
+    }*/
 }
