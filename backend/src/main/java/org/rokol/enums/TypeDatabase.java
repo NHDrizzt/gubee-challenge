@@ -4,12 +4,15 @@ import org.rokol.dao.AbstractDaoFactory;
 import org.rokol.dao.ProductRepositoryInMemoryFactory;
 import org.rokol.dao.ProductRepositoryJdbcFactory;
 
-public enum TypeDatabase {
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
+
+public enum TypeDatabase {
     JDBC(new ProductRepositoryJdbcFactory()),
     INMEMORY(new ProductRepositoryInMemoryFactory()),
-
     DEFAULT();
+
     private AbstractDaoFactory abstractFactory;
 
     TypeDatabase(AbstractDaoFactory factory) {

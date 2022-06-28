@@ -48,10 +48,6 @@ export class TemplateFormComponent implements OnInit {
   _listOfAllMarkets: Market[] = listOfAllMarkets
   _listOfAllStacks: Stack[] = listOfAllStacks
   constructor(private templateService: TemplateFormService) {
-    // @ts-ignore
-   /* this.listProducts$ = templateService.listProducts().pipe(
-      catchError( err => {return of({})})
-    )*/
 
     this.form = {
       marketSelected: [],

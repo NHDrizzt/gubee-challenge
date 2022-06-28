@@ -13,9 +13,8 @@ import org.rokol.services.ProductServiceImpl;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Path("/showProduct")
 @Produces(MediaType.APPLICATION_JSON)
@@ -23,52 +22,13 @@ import java.util.Set;
 public class ShowProductResource {
 
     @Inject
-    AbstractDaoFactory abstractDaoFactory;
-
-    @Inject
     ProductService productService;
-
- /*   @Path("/list")
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Set<Product> getListMarketAndStack(List<Market> listMrk){
-        abstractDaoFactory = TypeDatabase.JDBC.getDefaultFactory();
-        productService = new ProductServiceImpl(abstractDaoFactory);
-        List<Market> listMarket = new ArrayList<>();
-        List<Stack> listStack = new ArrayList<>();
-        Set<Product> setProduct;
-
-        listMarket.add(new Market(1,"Ecommerce"));
-        listMarket.add(new Market(1,"ERP"));
-        listStack.add(new Stack(1, "Java 10"));
-
-
-        setProduct = productService.getMarketAndStack(listMarket, listStack);
-        System.out.println(setProduct);
-        return setProduct;
-    }*/
 
     @Path("/listTest")
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     public Set<Product> getListMarketAndStackTest(FilterProduct filterProduct){
-        abstractDaoFactory = TypeDatabase.JDBC.getDefaultFactory();
-        productService = new ProductServiceImpl(abstractDaoFactory);
-
-        System.out.println(filterProduct.getMarket());
-        System.out.println(filterProduct.getStack());
-
         Set<Product> setProduct;
         setProduct = productService.getMarketAndStack(filterProduct.getMarket(), filterProduct.getStack());
-        System.out.println(setProduct);
         return setProduct;
     }
-
-
-/*    @Path("/getAll")
-    @GET
-    public List<Market> list() {
-        return productService.listAllMarkets();
-    }*/
 }

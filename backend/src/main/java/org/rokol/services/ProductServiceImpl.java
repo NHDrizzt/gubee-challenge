@@ -3,6 +3,7 @@ package org.rokol.services;
 import org.rokol.dao.AbstractDaoFactory;
 import org.rokol.dao.MarketRepository;
 import org.rokol.dao.ProductRepository;
+import org.rokol.enums.TypeDatabase;
 import org.rokol.model.Market;
 import org.rokol.model.Product;
 import org.rokol.model.Stack;
@@ -16,16 +17,21 @@ import java.util.Set;
 public class ProductServiceImpl implements ProductService {
 
     @Inject
+    AbstractDaoFactory abstractDaoFactory;
+    @Inject
     ProductRepository productRepository;
-
     @Inject
     MarketRepository marketRepository;
 
-    public ProductServiceImpl(AbstractDaoFactory factory) {
-        productRepository = factory.createDatabase();
+
+
+    public ProductServiceImpl() {
+
     }
     @Override
     public Set<Product> getMarketAndStack(List<Market> listMarket, List<Stack> listStack) {
+        abstractDaoFactory = TypeDatabase.JDBC.getDefaultFactory();
+        productRepository = abstractDaoFactory.createDatabase();
         return productRepository.listProductByMarketAndStack(listMarket, listStack);
     }
 
@@ -33,6 +39,4 @@ public class ProductServiceImpl implements ProductService {
     public List<Market> listAllMarkets(){
         return marketRepository.listAll();
     }
-
-
 }
