@@ -27,8 +27,6 @@ public class ShowProductResource {
     @Path("/listTest")
     @POST
     public Set<Product> getListMarketAndStackTest(FilterProduct filterProduct){
-        Set<Product> setProduct;
-        setProduct = productService.getMarketAndStack(filterProduct.getMarket(), filterProduct.getStack());
-        return setProduct;
+        return productService.getMarketAndStack(filterProduct.getMarket(), filterProduct.getStack());
     }
 }

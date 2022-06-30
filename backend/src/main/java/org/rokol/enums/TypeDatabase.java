@@ -5,8 +5,8 @@ import org.rokol.dao.ProductRepositoryInMemoryFactory;
 import org.rokol.dao.ProductRepositoryJdbcFactory;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
-
 
 public enum TypeDatabase {
     JDBC(new ProductRepositoryJdbcFactory()),
