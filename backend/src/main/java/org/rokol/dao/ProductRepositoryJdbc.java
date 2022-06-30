@@ -33,7 +33,8 @@ public class ProductRepositoryJdbc implements ProductRepository, ConnectionProvi
     @Override
     public Set<Product> listProductByMarketAndStack(List<Market> listMarket, List<Stack> listStack) {
         Set<Product> listProduct = new LinkedHashSet<>();
-        try (Connection conn = establishConnection()) {
+        try (Connection conn = establishConnection()){
+
             PreparedStatement psMarket = conn.prepareStatement(selectedMarket(listMarket));
             PreparedStatement psStack = conn.prepareStatement(selectedStack(listStack));
             listProduct.addAll(createResulSet(psMarket));

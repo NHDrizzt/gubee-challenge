@@ -28,8 +28,11 @@ export class TemplateFormService {
           tap(dado => console.log(dado)))
   }
 
-  listProducts(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(this.APIGet)
+  listMarkets(): Observable<Market[]> {
+    return this.httpClient.get<Market[]>(this.API)
+      .pipe(
+      tap(product => console.log(product))
+    );
   }
 
 }

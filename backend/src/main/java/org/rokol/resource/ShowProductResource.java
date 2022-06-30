@@ -29,4 +29,10 @@ public class ShowProductResource {
     public Set<Product> getListMarketAndStackTest(FilterProduct filterProduct){
         return productService.getMarketAndStack(filterProduct.getMarket(), filterProduct.getStack());
     }
+
+    @Path("/listAllMarket")
+    @GET
+    public List<Market> getListAllMarkets(){
+        return productService.listAllMarkets();
+    }
 }
