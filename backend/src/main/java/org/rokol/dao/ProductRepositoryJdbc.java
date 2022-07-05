@@ -9,8 +9,9 @@ import org.rokol.model.Product;
 import org.rokol.model.Stack;
 
 import javax.enterprise.context.Dependent;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Alternative;
-import javax.inject.Inject;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +22,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Alternative
-@Dependent
+@RequestScoped
 public class ProductRepositoryJdbc implements ProductRepository, ConnectionProvider, PanacheRepository<Product> {
 
     @Override

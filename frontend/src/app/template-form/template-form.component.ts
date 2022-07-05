@@ -39,7 +39,7 @@ const listOfAllStacks: Stack[] = [
 export class TemplateFormComponent implements OnInit {
 
   listProducts$: Observable<Product[]> | undefined
-  listMarket$: Observable<Market[]> | undefined
+ //listMarket$: Observable<Market[]>
   listProduct: Product[] = []
   displayProducts = ["id", "name", "description"]
   displayMarkets = ["id", "name"]
@@ -50,7 +50,12 @@ export class TemplateFormComponent implements OnInit {
   _listOfAllMarkets: Market[] = listOfAllMarkets
   _listOfAllStacks: Stack[] = listOfAllStacks
   constructor(private templateService: TemplateFormService) {
-
+  /*  this.listMarket$ = this.templateService.listMarkets().pipe(
+      catchError(error => {
+        return of([])
+      })
+    )
+*/
     this.form = {
       marketSelected: [],
       stackSelected: []
@@ -58,11 +63,7 @@ export class TemplateFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.listMarket$ = this.templateService.listMarkets().pipe(
-      catchError(error => {
-        return of([])
-      })
-    )
+
   }
 
   onSubmit(form: NgForm) : void {

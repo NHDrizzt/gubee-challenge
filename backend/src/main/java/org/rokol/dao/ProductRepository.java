@@ -8,5 +8,6 @@ import java.util.List;
 import java.util.Set;
 
 public interface ProductRepository {
+
     Set<Product> listProductByMarketAndStack(List<Market> listMarket, List<Stack> listStack);
 }

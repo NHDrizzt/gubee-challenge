@@ -29,6 +29,7 @@ public class ProductRepositoryProxy implements ProductRepository {
     @Override
     public Set<Product> listProductByMarketAndStack(List<Market> listMarket, List<Stack> listStack) {
         Set<Product> listProducts = null;
+        System.out.println(this.productRepository);
         System.out.println(productRepository);
         try {
             Arrays.stream(this.productRepository.getClass().getMethods()).filter(it -> it.isAnnotationPresent(Transaction.class)).findAny().ifPresent(it -> {
