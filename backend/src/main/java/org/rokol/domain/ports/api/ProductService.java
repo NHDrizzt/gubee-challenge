@@ -1,4 +1,4 @@
-package org.rokol.domain.ports.interfaces;
+package org.rokol.domain.ports.api;
 
 import org.rokol.domain.model.Market;
 import org.rokol.domain.model.Product;

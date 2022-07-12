@@ -2,7 +2,7 @@ package org.rokol.application.adapters.resources;
 
 import org.rokol.domain.dto.FilterProduct;
 import org.rokol.domain.model.Product;
-import org.rokol.domain.ports.interfaces.ProductService;
+import org.rokol.domain.ports.api.ProductService;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;

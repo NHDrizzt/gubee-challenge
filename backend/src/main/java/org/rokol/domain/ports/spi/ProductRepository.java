@@ -1,4 +1,4 @@
-package org.rokol.domain.ports.repositories;
+package org.rokol.domain.ports.spi;
 
 import org.rokol.domain.model.Market;
 import org.rokol.domain.model.Product;

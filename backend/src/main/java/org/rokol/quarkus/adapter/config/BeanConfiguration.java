@@ -2,7 +2,7 @@ package org.rokol.quarkus.adapter.config;
 
 import org.rokol.quarkus.adapter.repository.model.AbstractDaoFactory;
 import org.rokol.domain.adapter.ProductServiceImpl;
-import org.rokol.domain.ports.interfaces.ProductService;
+import org.rokol.domain.ports.api.ProductService;
 
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Default;

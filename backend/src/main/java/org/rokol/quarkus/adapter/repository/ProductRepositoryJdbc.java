@@ -1,6 +1,6 @@
 package org.rokol.quarkus.adapter.repository;
 
-import org.rokol.domain.ports.repositories.ProductRepository;
+import org.rokol.domain.ports.spi.ProductRepository;
 import org.rokol.domain.exception.DbException;
 import org.rokol.domain.model.Market;
 import org.rokol.domain.model.Product;
