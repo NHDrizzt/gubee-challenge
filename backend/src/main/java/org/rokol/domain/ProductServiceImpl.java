@@ -19,7 +19,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Set<Product> getMarketAndStack(List<Market> listMarket, List<Stack> listStack) {
-        System.out.println("chegou no service");
         ProductRepository productRepository = abstractDaoFactory.createDatabase();
         return productRepository.listProductByMarketAndStack(listMarket, listStack);
     }

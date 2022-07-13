@@ -21,7 +21,6 @@ public class ShowProductResource {
     @Path("/listTest")
     @POST
     public Set<Product> getListMarketAndStackTest(FilterProduct filterProduct){
-        System.out.println("chegou no resource!");
         return productService.getMarketAndStack(filterProduct.getMarket(), filterProduct.getStack());
     }
 
