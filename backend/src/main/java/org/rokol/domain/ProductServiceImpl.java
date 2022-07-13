@@ -1,4 +1,4 @@
-package org.rokol.domain.adapter;
+package org.rokol.domain;
 import org.rokol.quarkus.adapter.repository.model.AbstractDaoFactory;
 import org.rokol.domain.ports.spi.ProductRepository;
 import org.rokol.domain.ports.api.ProductService;
