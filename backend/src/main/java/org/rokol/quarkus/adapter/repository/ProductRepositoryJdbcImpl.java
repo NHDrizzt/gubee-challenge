@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 @Alternative
 @RequestScoped
-public class ProductRepositoryJdbc implements ProductRepository, ConnectionProvider {
+public class ProductRepositoryJdbcImpl implements ProductRepository, ConnectionProvider {
 
     @Override
     public Connection establishConnection() {

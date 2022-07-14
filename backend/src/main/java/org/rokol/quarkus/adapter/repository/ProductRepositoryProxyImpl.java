@@ -12,11 +12,11 @@ import java.util.Objects;
 import java.util.Set;
 
 @RequestScoped
-public class ProductRepositoryProxy implements ProductRepository {
+public class ProductRepositoryProxyImpl implements ProductRepository {
 
     ProductRepository productRepository;
 
-    public ProductRepositoryProxy(ProductRepository productRepository) {
+    public ProductRepositoryProxyImpl(ProductRepository productRepository) {
         Objects.requireNonNull(productRepository, "productRepository is required");
         this.productRepository = productRepository;
     }

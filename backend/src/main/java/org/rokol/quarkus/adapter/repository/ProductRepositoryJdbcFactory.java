@@ -12,6 +12,6 @@ public class ProductRepositoryJdbcFactory implements AbstractDaoFactory {
 
     @Override
     public ProductRepository createDatabase() {
-        return new ProductRepositoryProxy(new ProductRepositoryJdbc());
+        return new ProductRepositoryProxyImpl(new ProductRepositoryJdbcImpl());
     }
 }

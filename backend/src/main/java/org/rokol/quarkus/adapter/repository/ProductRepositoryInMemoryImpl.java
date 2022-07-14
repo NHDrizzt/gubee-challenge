@@ -8,7 +8,7 @@ import org.rokol.domain.model.Stack;
 import java.util.*;
 
 
-public class ProductRepositoryInMemory implements ProductRepository {
+public class ProductRepositoryInMemoryImpl implements ProductRepository {
 
     private static final Map<Integer, Product> myMapProduct = new HashMap<>();
     private static final Map<Integer, Stack> myMapStack = new HashMap<>();
@@ -41,10 +41,10 @@ public class ProductRepositoryInMemory implements ProductRepository {
         myMapMarket.put(3,m3);
     }
 
+
+
     @Override
     public Set<Product> listProductByMarketAndStack(List<Market> listMarket, List<Stack> listStack) {
-        String sqlMarket = listMarket.toString();
-        String sqlStack = listStack.toString();
         return new LinkedHashSet<>(myMapProduct.values());
     }
 }
