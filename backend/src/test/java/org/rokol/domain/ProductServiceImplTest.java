@@ -38,6 +38,6 @@ class ProductServiceImplTest {
 
     @Test
     void getMarketAndStack() {
- 
+
     }
 }
