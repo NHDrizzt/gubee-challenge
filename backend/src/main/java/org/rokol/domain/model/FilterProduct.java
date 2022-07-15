@@ -1,4 +1,4 @@
-package org.rokol.domain.dto;
+package org.rokol.domain.model;
 
 import org.rokol.domain.model.Market;
 import org.rokol.domain.model.Stack;

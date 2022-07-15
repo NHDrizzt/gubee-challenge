@@ -1,6 +1,6 @@
 package org.rokol.application.adapters.resources;
 
-import org.rokol.domain.dto.FilterProduct;
+import org.rokol.domain.model.FilterProduct;
 import org.rokol.domain.model.Product;
 import org.rokol.domain.ports.api.ProductService;
 
