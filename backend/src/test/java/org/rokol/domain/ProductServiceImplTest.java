@@ -38,7 +38,7 @@ class ProductServiceImplTest {
     }
 
     @Test
-    void should_return_list_prod() {
+    void should_list_prod() {
         List<Market> marketList = new ArrayList<>();
         List<Stack> stackList = new ArrayList<>();
         Set<Product> setProd = new LinkedHashSet<>();
